@@ -32,7 +32,7 @@ const App = () => {
                            setQuery(e.target.value)}}/>
             <Stack spacing={2}>
                 {!!posts && <ul>
-                    {posts.map(post => <li key={post.objectID}><Link href={post.url}>{post.title}</Link></li>)}
+                    {posts.map(post => post.title && <li key={post.objectID}><Link href={post.url}>{post.title}</Link></li>)}
                 </ul>}
                 {!!pageQty && (
                     <Pagination
