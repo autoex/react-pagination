@@ -25,9 +25,11 @@ const App = () => {
             })
     }, [query, currentPage]);
     return (
-        <Container>
+        <Container sx={{marginTop: 2}}>
             <TextField fullWidth id="filled-basic" label="Search" variant="filled" value={query}
-                       onChange={e => setQuery(e.target.value)}/>
+                       onChange={e => {
+                           setCurrentPage(1)
+                           setQuery(e.target.value)}}/>
             <Stack spacing={2}>
                 {!!posts && <ul>
                     {posts.map(post => <li key={post.objectID}><Link href={post.url}>{post.title}</Link></li>)}
@@ -36,7 +38,13 @@ const App = () => {
                     <Pagination
                         count={pageQty}
                         page={currentPage}
-                        onChange={(_, num) => setCurrentPage(num)}/>
+                        onChange={(_, num) => setCurrentPage(num)}
+                        showFirstButton
+                        showLastButton
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}/>
                 )}
             </Stack>
         </Container>
